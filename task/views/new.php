@@ -10,7 +10,6 @@
   <title>タスクの登録</title>
 </head>
 <body>
-  <h1>タスクの登録</h1>
 
 <!-- エラーチェック -->
   <?php if(count($errors) > 0) : ?>
@@ -21,58 +20,124 @@
     <?php endforeach; ?>
   <?php endif; ?>
 
-  <form action="create.php" method="post">
-    <div>
-      <label for="title">タスク名</label>
-      <input type="text" id="title" name="title" value="<?php echo $tasks['title'] ?>">
-    </div>
-    <div>
-      <label for="category">カテゴリ</label>
-      <input type="text" id="category" name="category"  value="<?php echo $tasks['category'] ?>">
-    </div>
-    <div>
-      <label for="priority">優先度</label>
+  <?php if($screenMode === '1') : ?>
+    <h1>タスクの登録</h1>
+    <form action="/tmp/task/create.php" method="post">
       <div>
-        <input type="radio" id="priority1" name="priority" value="低" checked>
-        <label for="priority1">低</label>
+        <label for="title">タスク名</label>
+        <input type="text" id="title" name="title" value="<?php echo $tasks['title'] ?>">
+      </div>
+      <div>
+        <label for="category">カテゴリ</label>
+        <input type="text" id="category" name="category"  value="<?php echo $tasks['category'] ?>">
+      </div>
+      <div>
+        <label for="priority">優先度</label>
+        <div>
+          <input type="radio" id="priority1" name="priority" value="低" checked>
+          <label for="priority1">低</label>
+        </div>
+
+        <div>
+          <input type="radio" id="priority2" name="priority" value="中">
+          <label for="priority2">中</label>
+        </div>
+
+        <div>
+          <input type="radio" id="priority3" name="priority" value="高">
+          <label for="priority3">高</label>
+        </div>
+      </div>
+      <div>
+        <label for="deadline">締切</label>
+        <input type="date" id="deadline" name="deadline"  value="<?php echo $tasks['deadline'] ?>">
+      </div>
+      <div>
+        <label for="status">状況</label>
+        <div>
+          <input type="radio" id="status1" name="status" value="未着手" checked>
+          <label for="status1">未着手</label>
+        </div>
+        <div>
+          <input type="radio" id="status2" name="status" value="進行中">
+          <label for="status2">進行中</label>
+        </div>
+        <div>
+          <input type="radio" id="status3" name="status" value="完了">
+          <label for="status3">完了</label>
+        </div>
+      </div>
+      <div>
+        <label for="description">状況・メモ</label>
+        <textarea id="description" name="description" rows="10" cols="40"><?php echo $tasks['description']; ?></textarea>
+      </div>
+      <div>
+        <button type="submit">登録する</button>
+      </div>
+    </form>
+  <?php elseif($screenMode === '2') : ?>
+    <h1>タスクの更新</h1>
+
+    <form action="/tmp/task/update.php" method="post">
+      <div>
+        <label for="title">タスク名</label>
+        <input type="text" id="title" name="title" value="<?php echo $tasks['title'] ?>">
+      </div>
+      <div>
+        <label for="category">カテゴリ</label>
+        <input type="text" id="category" name="category"  value="<?php echo $tasks['category'] ?>">
+      </div>
+      <div>
+        <label for="priority">優先度</label>
+        <div>
+          <input type="radio" id="priority1" name="priority" value="低" checked>
+          <label for="priority1">低</label>
+        </div>
+
+        <div>
+          <input type="radio" id="priority2" name="priority" value="中">
+          <label for="priority2">中</label>
+        </div>
+
+        <div>
+          <input type="radio" id="priority3" name="priority" value="高">
+          <label for="priority3">高</label>
+        </div>
+      </div>
+      <div>
+        <label for="deadline">締切</label>
+        <input type="date" id="deadline" name="deadline"  value="<?php echo $tasks['deadline'] ?>">
+      </div>
+      <div>
+        <label for="status">状況</label>
+        <div>
+          <input type="radio" id="status1" name="status" value="未着手" checked>
+          <label for="status1">未着手</label>
+        </div>
+        <div>
+          <input type="radio" id="status2" name="status" value="進行中">
+          <label for="status2">進行中</label>
+        </div>
+        <div>
+          <input type="radio" id="status3" name="status" value="完了">
+          <label for="status3">完了</label>
+        </div>
+      </div>
+      <div>
+        <label for="description">状況・メモ</label>
+        <textarea id="description" name="description" rows="10" cols="40"><?php echo $tasks['description']; ?></textarea>
       </div>
 
-      <div>
-        <input type="radio" id="priority2" name="priority" value="中">
-        <label for="priority2">中</label>
-      </div>
+      <!-- selectIndexの$idをupdate.phpに渡す処理 -->
+      <input type="hidden" name="indexId" value=<?php echo $id; ?>>
 
       <div>
-        <input type="radio" id="priority3" name="priority" value="高">
-        <label for="priority3">高</label>
+        <button type="submit">更新する</button>
       </div>
-    </div>
-    <div>
-      <label for="deadline">締め切り</label>
-      <input type="date" id="deadline" name="deadline"  value="<?php echo $tasks['deadline'] ?>">
-    </div>
-    <div>
-      <label for="status">状況</label>
-      <div>
-        <input type="radio" id="status1" name="status" value="未着手" checked>
-        <label for="status1">未着手</label>
-      </div>
-      <div>
-        <input type="radio" id="status2" name="status" value="進行中">
-        <label for="status2">進行中</label>
-      </div>
-      <div>
-        <input type="radio" id="status3" name="status" value="完了">
-        <label for="status3">完了</label>
-      </div>
-    </div>
-    <div>
-      <label for="description">状況・メモ</label>
-      <textarea id="description" name="description" rows="10" cols="40"><?php echo $tasks['description']; ?></textarea>
-    </div>
-    <div>
-      <button type="submit">登録する</button>
-    </div>
-  </form>
+    </form>
+  <?php elseif($screenMode === '3') : ?>
+
+  <?php endif; ?>
+
 </body>
 </html>

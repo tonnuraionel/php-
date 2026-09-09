@@ -5,7 +5,7 @@ require_once __DIR__. '/lib/escape.php';
 
 function taskList($link){
   $tasks = [];
-  $sql = 'select title, category, priority, deadline, status, description from tasks';
+  $sql = 'select id, title, category, priority, deadline, status, description from tasks';
 
   $results = mysqli_query($link, $sql);
   if(!$results) {

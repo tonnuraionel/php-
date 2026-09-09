@@ -16,7 +16,7 @@
   <?php if(count($tasks) > 0) : ?>
     <?php foreach($tasks as $task) : ?>
       <section>
-        <h4><?php echo escape($task['title']); ?></h4>
+        <h4><a href="/tmp/task/selectIndex.php?id=<?php echo urlencode($task['id']); ?>"><?php echo escape($task['title']); ?></a></h4>
         <div>カテゴリ：<?php echo escape($task['category']); ?></div>
         <div>優先度：
           <?php if($task['priority'] === '高') : ?>
@@ -36,6 +36,12 @@
   <?php else : ?>
       <?php echo '登録されているタスクはありません'; ?>
   <?php endif; ?>
+
+
+<!-- 更新処理 -->
+<a href="/tmp/task/update.php">タスクを更新する</a>
+
+
 
 </body>
 </html>

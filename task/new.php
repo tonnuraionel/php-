@@ -1,5 +1,7 @@
 <?php
 
+$screenMode = '1';
+
 $errors = [];
 
 $tasks = [
