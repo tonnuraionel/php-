@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__. '/lib/mysqli.php';
+require_once __DIR__. '/lib/escape.php';
 
 $screenMode = '2';
 $errors = [];
@@ -19,17 +20,15 @@ function getTask($link, $id){
 
   return $tasks;
 }
+
+
 // htmlのaタグからgetでidを持ってくる
 $id = $_GET['id'];
-
 // データベースを接続する。
 $link = dbConnect();
-
 // $idをもとに対象のデータを持ってくる。
 $tasks = getTask($link, $id);
-
 // データベースを切断する。
 mysqli_close($link);
-
 // 持ってきたデータをnew.phpに反映させる。
-include __DIR__.'/views/new.php';
+include __DIR__.'/views/selectIndex.php';

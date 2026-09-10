@@ -129,14 +129,20 @@
       </div>
 
       <!-- selectIndexの$idをupdate.phpに渡す処理 -->
-      <input type="hidden" name="indexId" value=<?php echo $id; ?>>
+      <input type="hidden" name="indexId" value=<?php echo $tasks['id']; ?>>
 
       <div>
         <button type="submit">更新する</button>
       </div>
     </form>
   <?php elseif($screenMode === '3') : ?>
-
+    <h1>タスクの削除</h1>
+    <form action="/tmp/task/delete.php" method="post">
+      <input type="hidden" name="indexId" value=<?php echo $tasks['id']; ?>>
+      <div>
+        <button type="submit">削除する</button>
+      </div>
+    </form>
   <?php endif; ?>
 
 </body>

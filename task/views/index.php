@@ -38,10 +38,5 @@
   <?php endif; ?>
 
 
-<!-- 更新処理 -->
-<a href="/tmp/task/update.php">タスクを更新する</a>
-
-
-
 </body>
 </html>
